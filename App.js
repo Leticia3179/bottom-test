@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { styles } from './styles';  // importando styles separado
 
-// Telas podem ficar fora do componente principal
 function HomeScreen() {
   return (
     <View style={styles.container}>
-      <Text>Home</Text>
+      <Text style={styles.text}>Home</Text>
     </View>
   );
 }
@@ -15,7 +15,7 @@ function HomeScreen() {
 function ContatosScreen() {
   return (
     <View style={styles.container}>
-      <Text>Contatos</Text>
+      <Text style={styles.text}>Contatos</Text>
     </View>
   );
 }
@@ -23,7 +23,7 @@ function ContatosScreen() {
 function AjudaScreen() {
   return (
     <View style={styles.container}>
-      <Text>Ajuda</Text>
+      <Text style={styles.text}>Ajuda</Text>
     </View>
   );
 }
@@ -31,7 +31,7 @@ function AjudaScreen() {
 function SobreScreen() {
   return (
     <View style={styles.container}>
-      <Text>sobre a App</Text>
+      <Text style={styles.text}>sobre a App</Text>
     </View>
   );
 }
@@ -41,7 +41,14 @@ const Tab = createBottomTabNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator
+        screenOptions={{
+          headerTitleAlign: 'center',
+          tabBarActiveTintColor: '#007AFF',
+          tabBarInactiveTintColor: 'gray',
+          tabBarStyle: styles.tabBar,
+        }}
+      >
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Contatos" component={ContatosScreen} />
         <Tab.Screen name="Ajuda" component={AjudaScreen} />
@@ -50,7 +57,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-});
